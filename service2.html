@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovate Solutions - Transformative Digital Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #000000;
+            --accent-color: #1a73e8;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .service-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f5f7fa 100%);
+        }
+
+        .service-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(15deg);
+        }
+
+        /* Service icon colors for buttons */
+        .service-icon.web-dev {
+            background: #FFD700; /* Yellow */
+        }
+        .service-icon.app-dev {
+            background: #FF6B6B; /* Red/Coral */
+        }
+        .service-icon.ui-ux {
+            background: #4ECB71; /* Light Green */
+        }
+        .service-icon.consulting {
+            background: #5BD1D7; /* Light Blue */
+        }
+        .service-icon.digital-marketing {
+            background: #FF9FF3; /* Light Pink */
+        }
+        .service-icon.procurement {
+            background: #A4B0BE; /* Grey */
+        }
+
+        /* Matching anchor colors to service icon colors */
+        .web-dev-link {
+            background-color: #000000 !important;
+            color: rgb(255, 255, 255) !important;
+        }
+        .app-dev-link {
+            background-color: #000000 !important;
+            color: white !important;
+        }
+        .ui-ux-link {
+            background-color: #000000 !important;
+            color: white !important;
+        }
+        .consulting-link {
+            background-color: #000000 !important;
+            color: white !important;
+        }
+        .digital-marketing-link {
+            background-color: #000000 !important;
+            color: white !important;
+        }
+        .procurement-link {
+            background-color: #000000 !important;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 1.5rem;
+            }
+            .service-card h3 {
+                font-size: 1.5rem;
+            }
+            .service-card p {
+                font-size: 0.875rem;
+            }
+        }
+
+        #logoimg {
+            width: 140px;
+            height: 55px;
+        }
+
+        #services_head {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-1 py-1 flex justify-between items-center">
+            <div class="text-2xl font-bold text-black"><img src="Spigle Logo.png" alt="" id="logoimg"></div>
+            
+            <!-- Hamburger Menu Button -->
+            <button id="menu-toggle" class="block md:hidden focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+    
+            <!-- Menu Items -->
+            <div id="menu" class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-black hover:text-blue-600">Home</a>
+                <a href="Services.html" class="text-black hover:text-blue-600">Services</a>
+                <a href="#" class="text-black hover:text-blue-600">About</a>
+                <a href="#" class="text-black hover:text-blue-600">Contact</a>
+                <a href="#" class="bg-black text-white px-4 py-0 rounded-full hover:bg-gray-800">Login</a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white w-full shadow-md py-4">
+            <a href="index2.html" class="block text-center py-2 text-black hover:text-blue-600">Home</a>
+            <a href="Services.html" class="block text-center py-2 text-black hover:text-blue-600">Services</a>
+            <a href="#" class="block text-center py-2 text-black hover:text-blue-600">About</a>
+            <a href="#" class="block text-center py-2 text-black hover:text-blue-600">Contact</a>
+            <a href="#" class="block text-center py-2 bg-black text-white rounded-full mx-10 hover:bg-gray-800">Login</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="container mx-auto px-4 py-16 text-center">
+        <h1 class="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+            Pioneering Digital Transformation
+        </h1>
+        <p class="text-xl max-w-3xl mx-auto mb-10 text-gray-700">
+            We don't just provide services. We craft digital ecosystems that revolutionize how businesses innovate, connect, and grow in the modern world.
+        </p>
+    </header>
+
+    <!-- Services Grid -->
+    <section class="container mx-auto px-4 py-16 space-y-12">
+        <h1 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600" id="services_head">
+            <b>Our Services</b>
+        </h1>
+        
+        <!-- Web Development - Image Left -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-1/3 mb-6 md:mb-0 md:mr-10 order-1 md:order-1">
+                <div class="service-icon web-dev w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #FFD700;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-2">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Adaptive Web Ecosystems
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    We transcend traditional web development by creating adaptive digital platforms that dynamically evolve with your business. Our solutions integrate AI-powered personalization, predictive user experiences, and seamless cross-platform compatibility to ensure your digital presence is not just a website, but a living, breathing business asset.
+                </p>
+                <a href="WebDevService.html" class="inline-block web-dev-link text-black px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Explore Web Solutions
+                </a>
+            </div>
+        </div>
+
+        <!-- App Development - Image Right -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-1">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Intelligent Mobile Experiences
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    Our app development goes beyond code. We craft intelligent mobile experiences that learn, adapt, and anticipate user needs. By integrating machine learning, contextual awareness, and seamless inter-app communication, we create mobile solutions that feel like natural extensions of user behavior.
+                </p>
+                <a href="AppDevService.html" class="inline-block app-dev-link text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Discover App Innovation
+                </a>
+            </div>
+            <div class="md:w-1/3 mb-6 md:mb-0 md:ml-10 order-1 md:order-2">
+                <div class="service-icon app-dev w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #FF6B6B;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- UI/UX Designing - Image Left -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-1/3 mb-6 md:mb-0 md:mr-10 order-1 md:order-1">
+                <div class="service-icon ui-ux w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #4ECB71;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+            </div>
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-2">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Empathetic Design Architecture
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    We don't just design interfaces; we architect emotional experiences. Our UI/UX approach combines neuroscience, behavioral psychology, and cutting-edge design principles to create interfaces that don't just look beautiful, but fundamentally understand and anticipate human interaction patterns.
+                </p>
+                <a href="#" class="inline-block ui-ux-link text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Reimagine Design
+                </a>
+            </div>
+        </div>
+
+        <!-- Strategic Consulting - Image Right -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-1">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Future-Proof Strategy Lab
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    More than consultants, we're technological futurists. Our strategic consulting transforms raw data into predictive roadmaps, leveraging advanced scenario modeling, AI-driven trend analysis, and holistic ecosystem mapping to help businesses not just adapt to change, but architect their future.
+                </p>
+                <a href="#" class="inline-block consulting-link text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Navigate Future Strategies
+                </a>
+            </div>
+            <div class="md:w-1/3 mb-6 md:mb-0 md:ml-10 order-1 md:order-2">
+                <div class="service-icon consulting w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #5BD1D7;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Digital Marketing - Image Left -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-1/3 mb-6 md:mb-0 md:mr-10 order-1 md:order-1">
+                <div class="service-icon digital-marketing w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #FF9FF3;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-2">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Holistic Digital Marketing Orchestration
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    We craft digital marketing strategies that transcend traditional advertising. By integrating advanced analytics, predictive modeling, and cross-channel synergy, we create immersive marketing ecosystems that adapt in real-time, ensuring your brand narrative resonates across every digital touchpoint.
+                </p>
+                <a href="#" class="inline-block digital-marketing-link text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Amplify Your Brand
+                </a>
+            </div>
+        </div>
+
+        <!-- Sourcing and Procurement - Image Right -->
+        <div class="service-card flex flex-col md:flex-row items-center bg-gray-100 p-10 rounded-2xl shadow-lg">
+            <div class="md:w-2/3 text-center md:text-left order-2 md:order-1">
+                <h3 class="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-600">
+                    Intelligent Procurement Ecosystem
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    We revolutionize sourcing and procurement through intelligent automation, predictive supply chain analytics, and strategic vendor optimization. Our approach transforms procurement from a cost center into a strategic value driver, leveraging AI and machine learning to create resilient, efficient, and adaptive procurement frameworks.
+                </p>
+                <a href="#" class="inline-block procurement-link text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Optimize Procurement
+                </a>
+            </div>
+            <div class="md:w-1/3 mb-6 md:mb-0 md:ml-10 order-1 md:order-2">
+                <div class="service-icon procurement w-24 h-24 text-white rounded-full flex items-center justify-center mx-auto" style="background-color: #A4B0BE;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Innovate Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

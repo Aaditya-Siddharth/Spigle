@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spigle - Digital Transformation Experts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #000000;
+            --accent-color: #1a73e8;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #background-animation, .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        #pakiza_luxe {
+            height: 40px
+        }
+
+        #logoimg {
+            width: 140px;
+            height: 55px;
+        }
+
+        .text-xl max-w-3xl mx-auto mb-10 {
+            font-size: smaller;
+        }
+
+        .floating-particles {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatUp 5s infinite ease-in-out;
+        }
+
+        .rounded-full1 {
+            height: 45px;
+            width: 45px;
+            border-radius: 100%;
+            border-color: rgb(255, 0, 0);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-form input, .modal-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-form button:hover {
+            background-color: #333;
+        }
+
+        #success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #clients{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #4bb71b;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #4bb71b;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+            position: relative;
+            margin: 0 auto 20px;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #4bb71b;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0.5; }
+            50% { transform: translateY(50vh) scale(1); opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 30px #4bb71b; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Success Notification Overlay -->
+    <div id="success-overlay">
+        <div class="success-container">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            <h2>Thanks for submitting!</h2>
+            <p>Our team will contact you shortly. Please explore our services.</p>
+        </div>
+    </div>
+
+    <canvas id="background-animation"></canvas>
+    <div class="floating-particles"></div>
+
+    <!-- Background Animation -->
+    <svg id="background-animation" viewBox="0 0 1440 810" preserveAspectRatio="xMaxYMax slice">
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(26,115,232,0.1);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(26,115,232,0.05);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path id="animatedPath" fill="url(#grad1)"></path>
+    </svg>
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-1 py-1 flex justify-between items-center">
+            <div class="text-2xl font-bold text-black"><img src="Spigle Logo.png" alt="" id="logoimg"></div>
+            
+            <!-- Hamburger Menu Button -->
+            <button id="menu-toggle" class="block md:hidden focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+    
+            <!-- Menu Items -->
+            <div id="menu" class="hidden md:flex space-x-6">
+                <a href="#" class="text-black hover:text-blue-600">Home</a>
+                <a href="Services.html" class="text-black hover:text-blue-600">Services</a>
+                <a href="#" class="text-black hover:text-blue-600">About</a>
+                <a href="#" class="text-black hover:text-blue-600">Contact</a>
+                <a href="https://spigleindia.netlify.app/" class="bg-black text-white px-4 py-0 rounded-full hover:bg-gray-800">Learn</a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white w-full shadow-md py-4">
+            <a href="#" class="block text-center py-2 text-black hover:text-blue-600">Home</a>
+            <a href="Services.html" class="block text-center py-2 text-black hover:text-blue-600">Services</a>
+            <a href="#" class="block text-center py-2 text-black hover:text-blue-600">About</a>
+            <a href="#" class="block text-center py-2 text-black hover:text-blue-600">Contact</a>
+            <a href="https://spigleindia.netlify.app/" class="block text-center py-2 bg-black text-white rounded-full mx-10 hover:bg-gray-800">Learn</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="container mx-auto px-4 py-16 text-center animated-section">
+        <h1 class="text-5xl font-bold mb-6">Transform Your Business with Digital Innovation</h1>
+        <p class="text-xl max-w-3xl mx-auto mb-10">At <b>Spigle</b>, we don't just build websites, apps, or strategies—we build dreams, one pixel and plan at a time. <br><br>"As copilots of innovation, we're here to turbocharge your growth while making complex solutions look effortless (and a little fun too). Let's create brilliance together!"
+            <br>What do you think? 🚀
+            </p>
+        <a href="#" class="inline-block bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition">Explore Our Services</a>
+    </header>
+
+    <!-- Client Information Section -->
+    <section class="container mx-auto px-4 py-16 animated-section">
+        <h2 class="text-4xl font-bold text-center mb-12">Trusted by Industry Leaders</h2>
+        <div class="grid md:grid-cols-5 gap-8 items-center opacity-70" id="Clients">
+            <img src="SST.jpg" alt="SST.jpg" class="mx-auto">
+            <img src="ULA.png" alt="Utopia Learning Academy" class="mx-auto">
+            <img src="zaitoon.jpg" alt="Zaitoon.jpg" class="mx-auto">
+            <img src="pakiza_luxe.png" alt="pakiza_luxe.png" id= 'pakiza_luxe'class="mx-auto">
+            <img src="Sashwat.png" alt="Sashwat.png" class="mx-auto">
+            
+
+            
+        </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section class="container mx-auto px-4 py-16 animated-section">
+        <h2 class="text-4xl font-bold text-center mb-12">Our Approach</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">1</div>
+                <h3 class="text-2xl font-semibold mb-4">Understand Your Goals</h3>
+                <p>Diving deep into your business needs and challenges to craft tailored solutions that truly matter.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">2</div>
+                <h3 class="text-2xl font-semibold mb-4">Plan with Precision</h3>
+                <p>Using market insights and trend analysis, we develop actionable strategies designed to give you a competitive edge.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">3</div>
+                <h3 class="text-2xl font-semibold mb-4">Innovative Solutions</h3>
+                <p>From web and app development to marketing and consulting, we create user-centric solutions that are efficient, scalable, and impactful.</p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">4</div>
+                <h3 class="text-2xl font-semibold mb-4">Seamless Execution</h3>
+                <p>We turn plans into reality with cutting-edge technology and a meticulous focus on delivering excellence.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">5</div>
+                <h3 class="text-2xl font-semibold mb-4">Continuous Improvement</h3>
+                <p>Through ongoing monitoring and optimization, we ensure your success stays sustainable and future-proof.</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">6</div>
+                <h3 class="text-2xl font-semibold mb-4">Long-Term Partnership</h3>
+                <p>As your trusted partners, we're here to support your growth every step of the way.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="container mx-auto px-4 py-16 animated-section">
+        <h2 class="text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="mb-6 italic">"Innovate Solutions transformed our digital strategy, helping us stay ahead in a competitive market."</p>
+                <div class="flex items-center">
+                    <img src="/api/placeholder/50/50" alt="Client" class="rounded-full1 mr-4">
+                    <div>
+                        <h4 class="font-semibold">John Doe</h4>
+                        <p class="text-sm">CEO, Tech Innovations Inc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="mb-6 italic">"Their expertise in digital marketing and web development has been crucial to our growth."</p>
+                <div class="flex items-center">
+                    <img src="1706890908301.jpg" alt="Client" class="rounded-full1 mr-4">
+                    <div>
+                        <h4 class="font-semibold">Jane Smith</h4>
+                        <p class="text-sm">Founder, E-commerce Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-100 p-6 rounded-lg">
+                <p class="mb-6 italic">"Innovate Solutions provides strategic consulting that goes beyond traditional approaches."</p>
+                <div class="flex items-center">
+                    <img src="/api/placeholder/50/50" alt="Client" class="rounded-full1 mr-4">
+                    <div>
+                        <h4 class="font-semibold">Michael Johnson</h4>
+                        <p class="text-sm">COO, Global Enterprises</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Innovate Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Services Inquiry Modal -->
+    <div id="servicesModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 class="text-2xl font-bold mb-6 text-center">Inquiry Form</h2>
+            <form id="servicesInquiryForm" class="modal-form">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                <select name="service" required>
+                    <option value="">Select the service Required</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="App Development">App Development</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="Strategic Business Consulting">Strategic Business Consulting</option>
+                    <option value="UI/UX Designing">UI/UX Designing</option>
+                    <option value="Sourcing & Procurement">Sourcing & Procurement</option>
+                </select>
+                <button type="submit">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Menu Toggle Functionality
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Particle Creation Function
+        function createParticles() {
+            const container = document.querySelector('.floating-particles');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(particle);
+            }
+        }
+        
+        window.addEventListener('load', () => {
+            createParticles();
+        });
+
+        // Modal Functionality
+        const exploreServicesBtn = document.querySelector('a[href="#"].inline-block.bg-black');
+        const modal = document.getElementById('servicesModal');
+        const closeBtn = document.querySelector('.modal-close');
+        const inquiryForm = document.getElementById('servicesInquiryForm');
+
+        // Open Modal
+        exploreServicesBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        // Close Modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the modal content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Form Submission
+        inquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                name: this.name.value.trim(),
+                email: this.email.value.trim(),
+                phone: this.phone.value.trim(),
+                service: this.service.value
+            };
+
+            // Validate form data
+            if (formData.name && formData.email && formData.phone && formData.service) {
+                // Disable submit button and show loading
+                const submitButton = this.querySelector('button');
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+
+                // Google Apps Script Web App URL for Sheet and Email
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbyuqZXSjZAZqcRoMfFgB7dTCmqPm6g_8EpOEgzD7JfqGhZy7TqB-KvYs1uDeLBrQU5V/exec';
+                
+                // Hide modal first
+                modal.style.display = 'none';
+
+                // Fetch request to Google Apps Script
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    // Show success overlay
+                    document.getElementById('success-overlay').style.display = 'flex';
+                    
+                    // Reset form
+                    inquiryForm.reset();
+                    submitButton.textContent = 'Submit Inquiry';
+                    submitButton.disabled = false;
+
+                    // Hide overlay after 6 seconds
+                    setTimeout(() => {
+                        document.getElementById('success-overlay').style.display = 'none';
+                    }, 6000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('There was an error submitting your form. Please try again.');
+                    
+                    // Reset button and show modal again
+                    submitButton.textContent = 'Submit Inquiry';
+                    submitButton.disabled = false;
+                    modal.style.display = 'flex';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
